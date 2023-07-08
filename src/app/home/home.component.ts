@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { GlobalService } from '../global.service';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,8 @@ import { GlobalService } from '../global.service';
 export class HomeComponent {
   destinationCount = 1
   convertToOrdinal ?: any;
-  constructor(private global: GlobalService) {
+  formArray: FormArray;
+  constructor(private global: GlobalService, private formBuilder: FormBuilder) {
     this.convertToOrdinal = (item: number) => {
       if (this.destinationCount === 1) {
         return ""
@@ -18,17 +20,21 @@ export class HomeComponent {
       }
       
     }
+    this.formArray = this.formBuilder.array([]);
   }
 
-  incrementDestinationCount() {
+  ngOnInit() {
+    this.formArray.push(this.formBuilder.control(''));
+  }
+
+  addItem(i: number) {
     this.destinationCount += 1;
+    this.formArray.insert(i + 1, this.formBuilder.control(''));
   }
 
-  decrementDestinationCount() {
+  removeItem(i: number) {
     this.destinationCount -= 1;
+    this.formArray.removeAt(i);
   }
 
-  getRange(count: number): number[] {
-    return Array(count).fill(0).map((_, index) => index + 1);
-  }
 }
