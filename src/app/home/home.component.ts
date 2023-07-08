@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { GlobalService } from '../global.service';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-home',
@@ -35,6 +36,10 @@ export class HomeComponent {
   removeItem(i: number) {
     this.destinationCount -= 1;
     this.formArray.removeAt(i);
+  }
+
+  onDrop(event: CdkDragDrop<any[]>) {
+    moveItemInArray(this.formArray.controls, event.previousIndex, event.currentIndex);
   }
 
 }
