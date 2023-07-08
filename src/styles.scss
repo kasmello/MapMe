@@ -1,0 +1,113 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$MapMe-primary: mat.define-palette(mat.$indigo-palette);
+$MapMe-primarydark: mat.define-palette(mat.$teal-palette);
+$MapMe-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$MapMe-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$MapMe-theme: mat.define-light-theme((
+  color: (
+    primary: $MapMe-primary,
+    accent: $MapMe-accent,
+    warn: $MapMe-warn,
+  )
+));
+
+$MapMe-dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $MapMe-primarydark,
+    accent: $MapMe-accent,
+    warn: $MapMe-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+
+.light {
+  @include mat.all-component-themes($MapMe-theme);
+  
+}
+
+.dark {
+  @include mat.all-component-themes($MapMe-dark-theme);
+  
+}
+
+.light-label {
+  color: #000000;
+}
+
+.dark-label {
+  color: #ffffff;
+}
+
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+body.light {
+  background-color: #ddceb5;
+}
+body.dark {
+  background-color: #2a2b2b;
+}
+
+mat-form-field {
+  height: 4em;
+  font-size: 1em;
+  width: 340px;
+  input {
+    padding-bottom: 2px;
+    font-size: 10px;
+  }
+}
+
+
+.add-location {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.2em!important;
+  min-width: unset!important;
+  height: 3.2em!important;
+  min-height: unset!important;
+
+}
+
+.mat-icon {
+  transform: scale(1.8);
+}
+
+// .add-location:hover {
+//   background-color: #1976d2;
+// }
+
+// .destinationContainer {
+//   width: 50%; /* Adjust the width based on your requirements */
+//   box-sizing: border-box;
+// }
+
+.columnContainer {
+  display: flex;
+  flex-direction: column;
+}

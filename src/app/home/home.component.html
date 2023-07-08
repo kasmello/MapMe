@@ -1,0 +1,12 @@
+
+<div class="columnContainer">
+    <ng-container  *ngFor="let item of getRange(destinationCount); let lastItem = last">
+        <div class="destinationContainer">
+            <mat-form-field color="primary">
+                <input color="primary" matInput placeholder="Enter the place of your {{convertToOrdinal(item)}}destination"> 
+            </mat-form-field>
+            <button mat-button class="add-location" (click)="incrementDestinationCount()"><mat-icon color="primary" class="icon-location">add_location</mat-icon></button>
+            <button mat-button *ngIf="destinationCount>1" class="add-location" (click)="decrementDestinationCount()"><mat-icon color="accent" class="icon-location">cancel</mat-icon></button>
+        </div>
+    </ng-container>
+<div></div>
