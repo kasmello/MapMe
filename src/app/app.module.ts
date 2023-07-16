@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon'
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+
 
 
 
@@ -27,7 +29,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    DragDropModule
+    DragDropModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

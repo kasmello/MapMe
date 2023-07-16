@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { GlobalService } from './global.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,19 @@ import { Title } from '@angular/platform-browser';
 })
 export class AppComponent {
   title = 'MapMe';
-  constructor (private titleService: Title) {
+  dark = true;
+  constructor (private titleService: Title, private globalService: GlobalService) {
     this.titleService.setTitle('🗺️MapMe - Travel in convenience');
+  }
+
+  ngOnInit() {
+    this.globalService.currLightingMode.subscribe((value) => {
+      this.dark = value;
+    });
+  }
+
+  switchMode() {
+    this.globalService.changeLightMode();
+    console.log(`dark mode set to ${this.dark}`)
   }
 }

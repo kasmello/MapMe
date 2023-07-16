@@ -6,6 +6,14 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class GlobalService {
 
+  private dark = new BehaviorSubject<boolean>(true);
+  currLightingMode = this.dark.asObservable();
+
+  changeLightMode() {
+    this.dark.next(!this.dark.value)
+  }
+
+
   convertToOrdinal = (number: number) => {
     const suffixes: { [key: number]: string } = {
       1: "st",
