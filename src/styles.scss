@@ -62,8 +62,15 @@ $MapMe-dark-theme: mat.define-dark-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+html, body { 
+  height: 100%;
+   
+}
+body { 
+  margin: 0; 
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  
+}
 
 body.light {
   background-color: #ddceb5;
@@ -75,7 +82,7 @@ body.dark {
 mat-form-field {
   height: 4em;
   font-size: 1em;
-  width: 340px;
+  width: 65vw;
   input {
     padding-bottom: 2px;
     font-size: 10px;
@@ -110,6 +117,8 @@ mat-form-field {
 .columnContainer {
   display: flex;
   flex-direction: column;
+  margin-left: 15vw;
+  margin-top: 5vw; 
 }
 
 .handle {
@@ -136,6 +145,14 @@ mat-form-field {
   transition: transform 150ms cubic-bezier(0, 0, 0.2, 1);
 }
 
+h1 {
+  font-size: 5em;
+  text-align: center;
+  margin: 0;
+  // margin-top: 50vh;
+  // transform: translateY(-50%);
+  transition: font-size 5s ease-in-out;
+}
 
 // .listContainer.cdk-drop-list-dragging .destinationContainer:not(.cdk-drag-placeholder) {
 //   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);

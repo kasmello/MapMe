@@ -1,13 +1,13 @@
-
 <div class="columnContainer" cdkDropList [cdkDropListData]="formArray.controls" (cdkDropListDropped)="onDrop($event)">
     <ng-container class="listContainer" *ngFor="let control of formArray.controls; let i = index">
         <div class="destinationContainer" cdkDrag>
-            <mat-icon class="handle" *ngIf="destinationCount>1" cdkDragHandle>drag_indicator</mat-icon>
+            <mat-icon class="handle" *ngIf="formArray.length>1" cdkDragHandle>drag_indicator</mat-icon>
             <mat-form-field color="primary">
-                <input color="primary" matInput placeholder="Enter the place of your {{convertToOrdinal(i+1)}}destination"> 
+                <input color="primary" #inputRef matInput placeholder="{{placeholderGenerator(i)}}"
+                (input)="updateControlValue(i, inputRef.value)"> 
             </mat-form-field>
             <button mat-button class="add-location" (click)="addItem(i)"><mat-icon color="primary" class="icon-location">add_location</mat-icon></button>
-            <button mat-button *ngIf="destinationCount>1" class="add-location" (click)="removeItem(i)"><mat-icon color="accent" class="icon-location">cancel</mat-icon></button>
+            <button mat-button *ngIf="formArray.length>2" class="add-location" (click)="removeItem(i)"><mat-icon color="accent" class="icon-location">cancel</mat-icon></button>
         </div>
     </ng-container>
 <div></div>
