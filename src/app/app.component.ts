@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { GlobalService } from './global.service';
+import { transitionFadeLeft } from './animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [transitionFadeLeft]
 })
 export class AppComponent {
   title = 'MapMe';

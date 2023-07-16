@@ -4,11 +4,13 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { fadeInAnimation } from '../animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  animations: [fadeInAnimation]
 })
 export class HomeComponent {
   private inputSubject = new Subject<string>();

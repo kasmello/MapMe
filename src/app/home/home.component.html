@@ -1,6 +1,6 @@
 <div class="columnContainer" cdkDropList [cdkDropListData]="formArray.controls" (cdkDropListDropped)="onDrop($event)">
     <ng-container class="listContainer" *ngFor="let control of formArray.controls; let i = index">
-        <div class="destinationContainer" cdkDrag>
+        <div [@fadeIn] class="destinationContainer" cdkDrag>
             <mat-icon class="handle scale-up" *ngIf="formArray.length>1" cdkDragHandle>drag_indicator</mat-icon>
             <mat-form-field color="primary">
                 <input color="primary" #inputRef matInput placeholder="{{placeholderGenerator(i)}}"
