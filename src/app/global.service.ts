@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Platform } from '@angular/cdk/platform';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,16 @@ import { BehaviorSubject } from 'rxjs';
 export class GlobalService {
 
   private dark = new BehaviorSubject<boolean>(true);
+
   currLightingMode = this.dark.asObservable();
+  mode = 'desktop';
+  constructor(private platform: Platform) {
+    if (this.platform.ANDROID||this.platform.IOS) {
+      this.mode = 'mobile';
+    } 
+    console.log("MODE: " + this.mode)
+  }
+  
 
   changeLightMode() {
     this.dark.next(!this.dark.value)

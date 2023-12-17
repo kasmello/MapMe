@@ -10,8 +10,8 @@ export const fadeInAnimation = trigger('fadeIn', [
 export const transitionFadeLeft = trigger('fromLeft', [
     transition(':enter', [
         group([
-            style({ opacity: 0, transform: 'translateX(-30vw)' }),
-            animate('1000ms ease-in-out', style({ transform: 'translateX(0)',opacity: 1 }))
+            style({ opacity: 0, transform: 'translateX(-15vw)' }),
+            animate('400ms ease-in-out', style({ transform: 'translateX(0)',opacity: 1 }))
           ])
     ])
       

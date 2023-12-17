@@ -1,9 +1,11 @@
 <body [ngClass]="dark? 'dark': 'light'">
+
   <h1 class="title" [ngClass]="dark? 'dark-label': 'light-label'" [@fromLeft]>MapMe</h1>
-  <div class="day-night-toggle">
-    <mat-slide-toggle (change)="switchMode()">
-      {{dark? "Dark": "Light"}} Mode
-    </mat-slide-toggle>
-  </div>
+
+  <mat-slide-toggle class="day-night-toggle" (change)="switchMode()">
+    {{dark? "Dark": "Light"}} Mode
+  </mat-slide-toggle>
+
   <router-outlet></router-outlet>
+
 </body>
