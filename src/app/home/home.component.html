@@ -2,7 +2,7 @@
     <ng-container class="listContainer" *ngFor="let control of formArray.controls; let i = index">
         <div [@fadeIn] class="destinationContainer" cdkDrag>
             <mat-icon [ngClass]="mode=='desktop'? 'handle scale-up': 'handle scale-up-mobile'" *ngIf="formArray.length>1" cdkDragHandle>drag_indicator</mat-icon>
-            <mat-form-field color="primary">
+            <mat-form-field [ngClass]="mode=='desktop'? 'field': 'field-mobile'" color="primary">
                 <input color="primary" #inputRef matInput placeholder="{{placeholderGenerator(i)}}"
                 (input)="updateControlValue(i, inputRef.value)"> 
             </mat-form-field>
