@@ -17,6 +17,7 @@ export class HomeComponent {
   @ViewChildren('inputRef') addresstexts:  QueryList<ElementRef>;
   placeholderGenerator ?: any;
   formArray: FormArray;
+  mode?: string;
   autocomplete: google.maps.places.Autocomplete | undefined;
 
   constructor(private global: GlobalService, private formBuilder: FormBuilder) {
@@ -32,6 +33,7 @@ export class HomeComponent {
       
     }
     this.formArray = this.formBuilder.array([]);
+    this.mode = global.mode;
   }
 
   ngOnInit() {
