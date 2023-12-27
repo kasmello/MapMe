@@ -28,6 +28,7 @@
     "@ng-maps/places": "^5.0.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "yarn": "^1.22.21",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
