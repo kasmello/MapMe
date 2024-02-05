@@ -99,7 +99,7 @@ body.dark {
 
 
 .scale-up {
-  transform: scale(1.8);
+  transform: scale(1.7);
 }
 
 .scale-up-mobile {
@@ -107,9 +107,11 @@ body.dark {
 }
 
 .add-location {
-  width: 3.2em!important;
+  
+  line-height: 1em;
+  
   min-width: unset!important;
-  height: 3.2em!important;
+  // height: 3.2em!important;
   min-height: unset!important;
 
 }

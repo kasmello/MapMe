@@ -19,6 +19,7 @@ export class AppComponent {
   ngOnInit() {
     this.globalService.currLightingMode.subscribe((value) => {
       this.dark = value;
+
     });
   }
 

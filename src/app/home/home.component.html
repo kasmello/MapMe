@@ -6,8 +6,8 @@
                 <input color="primary" #inputRef matInput placeholder="{{placeholderGenerator(i)}}"
                 (input)="updateControlValue(i, inputRef.value)"> 
             </mat-form-field>
-            <button mat-button class="add-location" (click)="addItem(i)"><mat-icon color="primary" [ngClass]="mode=='desktop'? 'handle scale-up': 'handle scale-up-mobile'">add_location</mat-icon></button>
-            <button mat-button *ngIf="formArray.length>2" class="add-location" (click)="removeItem(i)"><mat-icon color="accent" [ngClass]="mode=='desktop'? 'handle scale-up': 'handle scale-up-mobile'">cancel</mat-icon></button>
+            <button mat-button (click)="addItem(i)"><mat-icon color="primary" [ngClass]="mode=='desktop'? 'add-location scale-up': 'add-location scale-up-mobile'">add_location</mat-icon></button>
+            <button mat-button *ngIf="formArray.length>2" (click)="removeItem(i)"><mat-icon color="accent" [ngClass]="mode=='desktop'? 'add-location scale-up': 'add-location scale-up-mobile'">cancel</mat-icon></button>
         </div>
         <!-- <mat-icon *ngIf="i<formArray.length-1" class="more-destination">more_vert</mat-icon> -->
     </ng-container>
