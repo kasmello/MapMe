@@ -4,7 +4,7 @@
             <mat-icon [ngClass]="mode=='desktop'? 'handle scale-up': 'handle scale-up-mobile'" *ngIf="formArray.length>1" cdkDragHandle>drag_indicator</mat-icon>
             <mat-form-field [ngClass]="mode=='desktop'? 'field': 'field-mobile'" color="primary">
                 <input color="primary" #inputRef matInput placeholder="{{placeholderGenerator(i)}}"
-                (input)="updateControlValue(i, inputRef.value)"> 
+                (input)="updateIndex(i)"> 
             </mat-form-field>
             <button mat-button (click)="addItem(i)"><mat-icon color="primary" [ngClass]="mode=='desktop'? 'add-location scale-up': 'add-location scale-up-mobile'">add_location</mat-icon></button>
             <button mat-button *ngIf="formArray.length>2" (click)="removeItem(i)"><mat-icon color="accent" [ngClass]="mode=='desktop'? 'add-location scale-up': 'add-location scale-up-mobile'">cancel</mat-icon></button>
@@ -12,4 +12,5 @@
         <!-- <mat-icon *ngIf="i<formArray.length-1" class="more-destination">more_vert</mat-icon> -->
     </ng-container>
 </div>
-<button mat-button class = "go-button" color="primary" routerLink="/mapped"><b>Start Planning!</b></button>
+<!-- <button mat-button class = "go-button" color="primary" routerLink="/mapped"><b>Start Planning!</b></button> -->
+<button mat-button class = "go-button" color="primary" routerLink="/freeview" (click)="updateList()"><b>Free View</b></button>

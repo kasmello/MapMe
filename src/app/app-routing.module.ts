@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { MappedComponent } from './mapped/mapped.component';
+import { FreeviewComponent } from './freeview/freeview.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent}
-  ,{ path: 'mapped', component: MappedComponent}
+  { path: 'mapped', component: MappedComponent}
+  ,{ path: 'freeview', component: FreeviewComponent}
 ];
 
 @NgModule({

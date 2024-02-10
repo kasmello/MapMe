@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,8 @@ import { MatIconModule } from '@angular/material/icon'
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MappedComponent } from './mapped/mapped.component';
+import { FreeviewComponent } from './freeview/freeview.component';
+
 
 
 
@@ -21,7 +23,8 @@ import { MappedComponent } from './mapped/mapped.component';
   declarations: [
     AppComponent,
     HomeComponent,
-    MappedComponent
+    MappedComponent,
+    FreeviewComponent
   ],
   imports: [
     BrowserModule,
@@ -37,4 +40,6 @@ import { MappedComponent } from './mapped/mapped.component';
   providers: [],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }

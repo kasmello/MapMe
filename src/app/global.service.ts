@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ViewChild, ElementRef } from '@angular/core';
 import { Platform } from '@angular/cdk/platform';
 import { BehaviorSubject } from 'rxjs';
+import { AppComponent } from './app.component';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +10,12 @@ import { BehaviorSubject } from 'rxjs';
 export class GlobalService {
 
   private dark = new BehaviorSubject<boolean>(true);
+  private destinationList = new BehaviorSubject<any>([]);
 
   currLightingMode = this.dark.asObservable();
+  currDestinations = this.destinationList.asObservable();
+
+
   mode = 'desktop';
   constructor(private platform: Platform) {
     if (this.platform.ANDROID||this.platform.IOS) {
@@ -22,6 +28,16 @@ export class GlobalService {
   changeLightMode() {
     this.dark.next(!this.dark.value)
   }
+
+
+
+  changeList(newList: string[]) {
+    this.destinationList.next(newList)
+  }
+
+ 
+
+  
 
 
   convertToOrdinal = (number: number) => {
@@ -37,4 +53,7 @@ export class GlobalService {
   
     return number.toString() + suffix;
   }
+
+
+
 }

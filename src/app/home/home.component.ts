@@ -1,9 +1,8 @@
-import { Component, ViewChildren, ElementRef, AfterViewInit, QueryList } from '@angular/core';
+import { Component, ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { GlobalService } from '../global.service';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormArray } from '@angular/forms';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
 import { fadeInAnimation } from '../animations';
 
 @Component({
@@ -18,7 +17,8 @@ export class HomeComponent {
   placeholderGenerator ?: any;
   formArray: FormArray;
   mode?: string;
-  autocomplete: google.maps.places.Autocomplete | undefined;
+  changeList?: any;
+  currIndex: number;
 
   constructor(private global: GlobalService, private formBuilder: FormBuilder) {
     this.placeholderGenerator = (item: number) => {
@@ -34,30 +34,30 @@ export class HomeComponent {
     }
     this.formArray = this.formBuilder.array([]);
     this.mode = global.mode;
+    this.changeList = global.changeList;
   }
 
   ngOnInit() {
     this.formArray.push(this.formBuilder.control(''));
     this.formArray.push(this.formBuilder.control(''));
-    this.inputSubject.pipe(debounceTime(600)).subscribe(value => {
+    // this.inputSubject.pipe(debounceTime(600)).subscribe(value => {
       // Execute your action here
-      console.log('Input not edited for some time: calling api for', value);
-      if (this.autocomplete !== undefined) {
+      // console.log('Input not edited for some time: calling api for', value);
+      // if (this.autocomplete !== undefined) {
         // this.autocomplete.getPlace();
-      }
+      // }
       
-    });
+    // });
   }
 
   ngAfterViewInit() {
-    this.addresstexts.forEach(ref => this.getPlaceAutocomplete(ref));
+    
+    setTimeout(() => {this.addresstexts.forEach(ref => this.getPlaceAutocomplete(ref))},500);
   }
 
   async addItem(i: number) {
     this.formArray.insert(i + 1, this.formBuilder.control(''));
-    console.log(this.formArray.controls.map(control => control.value))
-    await this.delay(10);
-    this.addresstexts.forEach(ref => this.getPlaceAutocomplete(ref));
+    await setTimeout(() => {this.addresstexts.forEach(ref => this.getPlaceAutocomplete(ref))},10);
   }
 
   removeItem(i: number) {
@@ -68,23 +68,34 @@ export class HomeComponent {
     moveItemInArray(this.formArray.controls, event.previousIndex, event.currentIndex);
   }
 
-  updateControlValue(i: number, value: string): void {
-    const control = this.formArray.controls[i];
-    control.setValue(value);
-    // this.inputSubject.next(value);
+  updateControlValue(value: any): void {
+    const control = this.formArray.controls[this.currIndex];
+    if (value != null) {
+      control.setValue(value);
+      
+    }
+    console.log(value)
+    
+
+  }
+
+  updateIndex(i: number) {
+    this.currIndex = i
   }
 
   getPlaceAutocomplete(e: ElementRef) {
+    
     const autocomplete = new google.maps.places.Autocomplete(e.nativeElement,
         {
-            componentRestrictions: { country: 'AU' } // 'establishment' / 'address' / 'geocode'
+            componentRestrictions: { country: 'AU' }, // 'establishment' / 'address' / 'geocode'
+            fields: ['place_id']
         });
+    autocomplete.addListener('place_changed', () => this.updateControlValue(autocomplete.getPlace().place_id));
   }
 
-  delay(ms: number): Promise<void> {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
+
+  updateList() {
+    this.global.changeList(this.formArray.controls.map(item => item.value));
   }
 
   // invokeEvent(place: Object) {
